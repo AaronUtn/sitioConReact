@@ -1,0 +1,18 @@
+.novedades {
+    width: 75%;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.novedades h3 {
+    
+    font-weight: 600;
+}
+.novedades h4{
+    font-weight: 400;
+}
+.novedades p{
+    font-size: 12px;
+    color:gray;
+
+}

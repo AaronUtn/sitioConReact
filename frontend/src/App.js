@@ -1,7 +1,8 @@
 //import logo from './logo.svg';<img src={logo} className="App-logo" alt="logo" />
-//import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import React from "react";
+import './App.css';
+import './style/layout.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./componentes/layout/Header";
 import Nav from "./componentes/layout/Navegador";
@@ -15,23 +16,20 @@ import NovedadesPage from "./pages/NovedadesPage";
 
 function App() {
   return (
-    <>
-      <div className="App">
-        <Header>
-          <BrowserRouter>
-            <Nav></Nav>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="nosotros" element={<NosotrosPage />} />
-              <Route path="novedades" element={<NovedadesPage />} />
-              <Route path="contacto" element={<ContactoPage />} />
-            </Routes>
-          </BrowserRouter>
-        </Header>
+    <div className="App">
+      <Header />
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="nosotros" element={<NosotrosPage />} />
+          <Route path="novedades" element={<NovedadesPage />} />
+          <Route path="contacto" element={<ContactoPage />} />
+        </Routes>
+      </BrowserRouter>
 
-        <Footer></Footer>
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 
