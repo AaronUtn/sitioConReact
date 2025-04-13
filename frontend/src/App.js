@@ -12,6 +12,7 @@ import ContactoPage from "./pages/ContactoPage";
 import HomePage from "./pages/HomePage";
 import NosotrosPage from "./pages/NosotrosPage";
 import NovedadesPage from "./pages/NovedadesPage";
+import ServiciosPage from './pages/ServiciosPage';
 //import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="nosotros" element={<NosotrosPage />} />
           <Route path="novedades" element={<NovedadesPage />} />
           <Route path="contacto" element={<ContactoPage />} />
+          <Route path="servicios" element={<ServiciosPage/>}/>
         </Routes>
       </BrowserRouter>
 
