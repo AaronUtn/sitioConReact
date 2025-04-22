@@ -20,7 +20,7 @@ app.set("view engine", "hbs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));//se cambia de false a true porque no puedo parsear automaticamnte por express
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 

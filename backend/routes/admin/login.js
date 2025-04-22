@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/logout", function (req, res, next) {
-  req.session.destroy();//destruime las variables de sesion id y usuario
+  req.session.destroy(); //destruime las variables de sesion id y usuario
   res.render("admin/login", {
     layout: "admin/layout",
   });
@@ -35,7 +35,7 @@ router.post("/", async (req, res, next) => {
       console.log("login exitoso. redirigiendo a novedades....");
       req.session.id = data.id;
 
-      res.redirect("/admin/novedades"); //para ver si hace coneion
+      res.redirect("/admin/novedades"); //para ver si hace conexion
     } else {
       console.log("No se encontró usuario o clave incorrecta");
       res.render("admin/login", {
