@@ -1,3 +1,4 @@
+const { request } = require("express");
 const router = require("../routes/admin/novedades");
 var { pool, mssql, connectDB } = require("./bd");
 
@@ -17,8 +18,6 @@ async function getNovedades() {
 
 async function insertNovedad(obj) {
   try {
-    
-
     //convertir objeto con null prototype a objeto pleno
     //const datos = JSON.parse(JSON.stringify(novedad));
     var pool = await connectDB();
@@ -42,4 +41,55 @@ async function insertNovedad(obj) {
   }
 }
 
-module.exports = { getNovedades, insertNovedad };
+async function deleteNovedadById(id) {
+  try {
+    var pool = await connectDB();
+    var request = pool.request();
+    var query = `DELETE FROM novedades WHERE id = @id`;
+    request.input("id", mssql.Int, id);
+    var result = await request.query(query);
+    return result;
+  } catch (error) {
+    console.error("error al eliminar novedad:", error);
+    throw error;
+  }
+}
+
+async function getNovedadById(id){
+  try{
+    var pool = await connectDB();
+    var request = pool.request();
+    var query = `SELECT * FROM novedades WHERE id =@id `;
+    request.input('id',mssql.Int,id);
+    var result = await request.query(query);
+    return result.recordset[0];
+  }catch(error){
+    console.log("error al hacer getNovedadById",error);
+  }
+}
+async function modificarNovedadById(obj,id){
+  try{
+      var pool = await connectDB();
+      var request = pool.request();
+      request.input("valor2", mssql.VarChar, obj.titulo);
+      request.input("valor3", mssql.VarChar, obj.subtitulo);
+      request.input("valor4", mssql.Text, obj.cuerpo);
+      request.input("id", mssql.Int, id);
+      var query = `UPDATE novedades SET titulo = @valor2, subtitulo=@valor3, cuerpo=@valor4 WHERE id = @id`;
+      var rows = await request.query(query);
+      //console.log("resultados de modificacion:", rows);
+      return rows;
+    }catch(error){
+    console.log("error al hacer modificarNovedadById")
+    throw error;
+    }
+  }
+
+
+module.exports = {
+  getNovedades,
+  insertNovedad,
+  deleteNovedadById,
+  getNovedadById,
+  modificarNovedadById,
+};
