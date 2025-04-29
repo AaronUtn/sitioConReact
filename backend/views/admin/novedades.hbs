@@ -19,7 +19,7 @@
             <div class="col-7">
                 <h3>Listado de novedades</h3>
             </div>
-            <div class="col-5 text-right">
+            <div class="col-5 text-end">
                 <a class="btn btn-success" href="/admin/novedades/agregar"><i class="fa fa-plus" aria-hidden="true"></i>Nuevo</a>
             </div>
         </div>
@@ -32,7 +32,8 @@
                         <tr class="table-dark">
                             <th scope="col">#</th>
                             <th scope="col">Titulo</th>
-                            <th scope="text-end">Acciones</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="text-end">Acciones</th> {{!--text-end--}}
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +41,8 @@
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{titulo}}</td>
-                            <td class="text_center">
+                            <td>{{{imagen}}}</td>
+                            <td class="col-3 text-end">
                                 <a class="btn btn-secundary" href="/admin/novedades/modificar/{{id}}" title="Editar">
                                     <i class="fa fa-pencil" aria_hidden="true"></i></a>
                                 <a class="btn btn secondary" href="/admin/novedades/eliminar/{{id}}" title="Eliminar"><i class="fa fa-trash"

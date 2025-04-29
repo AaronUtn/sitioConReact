@@ -10,9 +10,12 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/admin/login");
 var adminRouter = require("./routes/admin/novedades");
+var apiRouter = require("./routes/api");//m6u3consumoDeApi
 var session = require("express-session");
 
 var app = express();
+var fileUpload = require("express-fileupload");
+var cors = require('cors');//m6u3consumoDeApi
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -47,10 +50,18 @@ secured = async (req, res, next) => {
   }
 }
 
+
+//modulo 6 unidad 3//
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp'
+}));
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/admin/login", loginRouter);
 app.use("/admin/novedades",secured, adminRouter);
+app.use('/api',cors(),apiRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

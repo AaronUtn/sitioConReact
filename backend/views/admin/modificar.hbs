@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-6 offset-3">
             <h4>Modificar la novedad</h4>
-            <form action="/admin/novedades/modificar" method="post">
+            <form action="/admin/novedades/modificar" method="post" enctype="multipart/form-data">
                 <input type="hidden" value="{{novedad.id}}" name="id">
                 <div id="idHelp" class="form-text">El campo id no puede estar vacio</div>
 
@@ -20,6 +20,18 @@
                     <textarea placeholder="Subtitulo" class="form-control"
                         name="subtitulo">{{novedad.subtitulo}}</textarea>
                     <div id="subtituloHelp" class="form-text">El campo subtitulo no puede estar vacio</div>
+                </div>
+
+                <div class="form-group">
+                    <p>
+                        <label>Imagen: <input type="file" name="imagen" id="imagen" /> </label>
+                    </p>
+                    <p>
+                        <label><input type="checkbox"   name="img_delete" id="img_delete" value="1" />
+                                Eliminar imagen actual? <br></label>
+                        <input type="hidden" name="img_original" value="{{novedad.img_id}}">
+                    </p>
+
                 </div>
 
                 <div class="form-group">

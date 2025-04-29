@@ -30,7 +30,8 @@ async function insertNovedad(obj) {
     request.input("valor2", mssql.VarChar, obj.titulo);
     request.input("valor3", mssql.VarChar, obj.subtitulo);
     request.input("valor4", mssql.Text, obj.cuerpo);
-    var query = `INSERT novedades (titulo,subtitulo,cuerpo) VALUES (@valor2,@valor3,@valor4)`;
+    request.input("img_id", mssql.VarChar,obj.img_id || null);
+    var query = `INSERT novedades (titulo,subtitulo,cuerpo, img_id) VALUES (@valor2,@valor3,@valor4,@img_id)`;
 
     var result = await request.query(query);
     //console.log("metodo insertNovedad resultado del insert", result);//verifico que se envie
@@ -68,6 +69,7 @@ async function getNovedadById(id){
   }
 }
 async function modificarNovedadById(obj,id){
+  console.log('Datos que se envían para modificar:', obj);
   try{
       var pool = await connectDB();
       var request = pool.request();
@@ -75,7 +77,8 @@ async function modificarNovedadById(obj,id){
       request.input("valor3", mssql.VarChar, obj.subtitulo);
       request.input("valor4", mssql.Text, obj.cuerpo);
       request.input("id", mssql.Int, id);
-      var query = `UPDATE novedades SET titulo = @valor2, subtitulo=@valor3, cuerpo=@valor4 WHERE id = @id`;
+      request.input("img_id",mssql.VarChar, obj.img_id );
+      var query = `UPDATE novedades SET titulo = @valor2, subtitulo=@valor3, cuerpo=@valor4,img_id=@img_id WHERE id = @id`;
       var rows = await request.query(query);
       //console.log("resultados de modificacion:", rows);
       return rows;
